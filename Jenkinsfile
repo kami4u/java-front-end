@@ -3,22 +3,22 @@ node {
         slackSend channel: "#northcoders-java", message: "Front end:)) started building"
        }
    stage('Preparation') {
-      git credentialsId: 'kami', url: 'https://github.com/kami4u/java-spring-data.git'
+      git credentialsId: 'kami', url: 'https://github.com/kami4u/java-front-end.git'
    }
-   stage('Clean') {
-      sh "mvn -Dmaven.test.failure.ignore clean"
+   stage('Installation') {
+      sh "npm install"
    }
-   stage('Package') {
-      sh "mvn -Dmaven.test.failure.ignore package"
+   stage('npm Build') {
+      sh "npm run build"
    }
    stage('Docker Build') {
-      sh "docker build -t myapp ."
+      sh "docker build -t front ."
    }
    stage('Stop app') {
-      sh "docker stop myapp || true"
-      sh "docker rm myapp || true"
+      sh "docker stop front || true"
+      sh "docker rm front || true"
    }
    stage('Docker Deploy') {
-         sh "docker run -d --name myapp -p 8081:8080 myapp"
+         sh "docker run -d --name front -p 80:80 front"
       }
 }
