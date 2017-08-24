@@ -16,7 +16,7 @@ class App extends Component {
       <Router>
         <div>
           <Switch>  
-            <Route exact path='/cars' component={Drone}/>
+            <Route exact path='/drones' component={Drone}/>
             <Redirect exact from='/' to='/drones'/>
              <Route path='/drone/add' component={AddDrone}/> 
             <Route path='/drone/:id' component={getDrone}/>
