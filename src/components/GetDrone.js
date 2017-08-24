@@ -11,7 +11,7 @@ class Drone extends Component {
         };
     }
     componentDidMount () {
-        request.get(`${ROOT}/drones/${this.props.match.params.id}`)
+        request.get(`${ROOT}/cars/${this.props.match.params.id}`)
             .then((res) => {
                 this.setState({drone: res.data});
             })
@@ -19,9 +19,9 @@ class Drone extends Component {
     }
     render () {
         return (<div >
-            <h2>Name: {this.state.drone.droneName}</h2>
-            <h2>X: {this.state.drone.droneX}</h2><h2>Y: {this.state.drone.droneY}</h2>
-            <button><Link to='/drones'>Go Back to lists</Link></button>
+            
+            <h2>carMake: {this.state.drone.carMake}</h2><h2>carModel: {this.state.drone.carModel}</h2>
+            <button><Link to='/'>Go Back to lists</Link></button>
         </div>);
     }
 }
