@@ -1,0 +1,60 @@
+Docker cheat sheet
+
+Show running docker process
+
+docker ps -a
+
+Pull down the 5.7.19 version of MySQL
+
+docker pull mysql:5.7.19
+
+Start the MySQL docker container
+
+(Note this doesn't include the volume mounts and means data will be lost when the container stops)
+
+docker run \
+-e MYSQL_ROOT_PASSWORD=password \
+-e MYSQL_DATABASE=cars \
+-p 3306:3306 \
+mysql:5.7.19
+List your docker volumes
+
+docker volume ls
+
+Create a docker volume called mysql
+
+docker volume create mysql
+
+Start the MySQL docker container with volume mounts
+
+(Note this doesn't include the volume mounts and means data will be lost when the container stops)
+
+docker run \
+-e MYSQL_ROOT_PASSWORD=password \
+-e MYSQL_DATABASE=cars \
+-p 3306:3306 \
+-v mysql:/var/lib/mysql \
+mysql:5.7.19
+Connect to the above MySQL container via the command line
+
+When prompted enter the password as 'password'
+
+mysql -u root -p -h 127.0.0.1 cars
+
+SSH in to a running container
+
+Firstly grab the container ID
+
+docker ps
+
+It will output something like:
+
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+b941d86b842a        mysql:5.7.19        "docker-entrypoint..."   6 seconds ago       Up 4 seconds        0.0.0.0:3306->3306/tcp   elegant_mcnulty
+Then use the container ID:
+
+docker exec -it b941 bash
+
+Building your own docker images. Command below assumes you are in the directory of the Dockerfile
+
+docker build -t my-image-name:my-image-tag .
