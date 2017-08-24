@@ -26,7 +26,7 @@ class Drone extends Component {
                     
                 </div>;
             })}
-            <button><Link to='/drone/add'>Add a drone</Link></button>
+            <button><Link to='/drone/add'>Add a car</Link></button>
         </div>);
     }
 }

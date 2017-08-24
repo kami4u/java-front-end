@@ -10,10 +10,10 @@ class AddDrone extends Component {
         };
     }
     componentDidMount () {
-        request.post(`${ROOT}/drones/-1`, { 
-            droneX: 170, 
-            droneY: 123, 
-            droneName: 'TesterDrone23'
+        request.post(`${ROOT}/cars/-1`, { 
+            carMake: 'volkswagen', 
+            carModel: 'golf', 
+            engineSize: 2000
         }).then(() => {
             this.setState({error: 'Drone Been Added'});
         })
